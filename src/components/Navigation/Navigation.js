@@ -4,14 +4,17 @@ import styled from "styled-components";
 import { BsCart3 } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Container } from "../layouts/layouts";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 const Navigation = () => {
+  const size = useWindowSize();
+
   return (
     <StyledContainer>
       <Content>
         <FlexContainer>
           <MenuIcon />
-          <Logo src="/assets/navigation/logo.svg" />
+          {size.width > 576 && <Logo src="/assets/navigation/logo.svg" />}
           <Links>
             <Link href="/">Home</Link>
             <Link href="/">Headphones</Link>
@@ -19,6 +22,7 @@ const Navigation = () => {
             <Link href="/">Earphones</Link>
           </Links>
         </FlexContainer>
+        {size.width <= 576 && <Logo src="/assets/navigation/logo.svg" />}
         <CartIcon />
       </Content>
     </StyledContainer>
@@ -108,6 +112,7 @@ const MenuIcon = styled(GiHamburgerMenu)`
   }
 
   @media (max-width: 576px) and (orientation: portrait) {
-    margin-right: 10.15rem;
+    // margin-right: 10.15rem;
+    margin-right: 0;
   }
 `;
