@@ -4,12 +4,15 @@ export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
     width: undefined,
     height: undefined,
+    orientation: "",
   });
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
+        orientation:
+          window.innerWidth > window.innerHeight ? "landscape" : "portrait",
       });
     };
 
