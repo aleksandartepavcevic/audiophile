@@ -1,12 +1,8 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const Button = ({ children, primary, secondary }) => {
-  return (
-    <StyledButton primary={primary} secondary={secondary}>
-      {children}
-    </StyledButton>
-  );
+const Button = ({ value, ...rest }) => {
+  return <StyledButton {...rest}>{value}</StyledButton>;
 };
 
 export default Button;
@@ -32,5 +28,13 @@ const StyledButton = styled.button`
     css`
       background-color: ${(props) => props.theme.colors.black};
       color: ${(props) => props.theme.colors.white};
+    `}
+
+  ${({ outlined }) =>
+    outlined &&
+    css`
+      border: 0.0625rem solid ${(props) => props.theme.colors.black};
+      background-color: transparent;
+      color: ${(props) => props.theme.colors.black};
     `}
 `;

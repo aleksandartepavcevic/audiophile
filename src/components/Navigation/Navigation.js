@@ -8,13 +8,16 @@ import { useWindowSize } from "../../hooks/useWindowSize";
 
 const Navigation = () => {
   const size = useWindowSize();
-  console.log(size);
+
   return (
     <StyledContainer>
       <Content>
         <FlexContainer>
           <MenuIcon />
-          {size.orientation === "landscape" ? (
+          {size.orientation === "landscape" ||
+          (size.width > 576 &&
+            size.width <= 1024 &&
+            size.orientation === "portrait") ? (
             <Logo src="/assets/navigation/logo.svg" />
           ) : null}
           <Links>
@@ -24,7 +27,7 @@ const Navigation = () => {
             <Link href="/">Earphones</Link>
           </Links>
         </FlexContainer>
-        {size.orientation === "portrait" ? (
+        {size.width <= 576 && size.orientation === "portrait" ? (
           <Logo src="/assets/navigation/logo.svg" />
         ) : null}
         <CartIcon />
@@ -106,17 +109,17 @@ const CartIcon = styled(BsCart3)`
 `;
 
 const MenuIcon = styled(GiHamburgerMenu)`
+  display: none;
   font-size: 1.8rem;
   color: ${(props) => props.theme.colors.white};
   margin-right: 2.625rem;
   cursor: pointer;
 
-  @media (orientation: landscape) {
-    display: none;
+  @media (max-width: 1024px) and (orientation: portrait) {
+    display: block;
   }
 
   @media (max-width: 576px) and (orientation: portrait) {
-    // margin-right: 10.15rem;
     margin-right: 0;
   }
 `;

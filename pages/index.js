@@ -3,6 +3,9 @@ import { Container } from "../src/components/layouts/layouts";
 import Button from "../src/components/Inputs/Button";
 import Product from "../src/components/Product/Product";
 import Head from "next/head";
+import Heading from "../src/components/Typography/Heading";
+import Paragraph from "../src/components/Typography/Paragraph";
+import Pre from "../src/components/Typography/Pre";
 
 export default function Home() {
   return (
@@ -12,13 +15,10 @@ export default function Home() {
       </Head>
       <LandingSection>
         <LandingContent>
-          <Pre>New product</Pre>
-          <Heading>XX99 Mark II Headphones</Heading>
-          <Paragraph>
-            Experience natural, lifelike audio and exceptional build quality
-            made for the passionate music enthusiast.
-          </Paragraph>
-          <Button primary>See Product</Button>
+          <Pre value="New product" />
+          <Heading as="h1" value="XX99 Mark II Headphones" />
+          <Paragraph value="Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast." />
+          <Button primary value="See Product" />
         </LandingContent>
       </LandingSection>
       <Products>
@@ -31,17 +31,20 @@ export default function Home() {
       </Products>
       <Featured>
         <FeaturedProductOne>
-          <FeaturedImage url="/assets/home/featured-zx9.svg" />
+          <FeaturedImageOne url="/assets/home/featured-zx9.svg" />
           <Rings />
           <ProductOneContent>
-            <Heading>ZX9 SPEAKER</Heading>
-            <Paragraph>
-              Upgrade to premium speakers that are phenomenally built to deliver
-              truly remarkable sound.
-            </Paragraph>
-            <Button secondary>See Product</Button>
+            <Heading page="home" as="h1" value="ZX9 SPEAKER" />
+            <Paragraph value="Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound." />
+            <Button secondary value="See Product" />
           </ProductOneContent>
         </FeaturedProductOne>
+        <FeaturedProductTwo>
+          <FeaturedTwoContent>
+            <Heading page="home" as="h3" value="ZX7 SPEAKER" />
+            <Button outlined value="See Product" />
+          </FeaturedTwoContent>
+        </FeaturedProductTwo>
       </Featured>
     </>
   );
@@ -49,15 +52,12 @@ export default function Home() {
 
 const LandingSection = styled(Container)`
   position: relative;
-  min-height: 45.5625rem;
-  height: 100vh;
+  height: clamp(45.5625rem, 100vh, 67.5rem);
   background-color: #141414;
   background-image: url("/assets/home/hero.svg");
   background-position: 0 30%;
   background-size: contain;
   background-repeat: no-repeat;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
 
   @media (max-width: 1024px) and (orientation: portrait) {
     display: flex;
@@ -73,13 +73,13 @@ const LandingSection = styled(Container)`
     background-image: url("/assets/home/hero-mobile.svg");
     background-size: cover;
     min-height: 37.5rem;
-    max-height: 812px;
+    max-height: 920px;
     height: 100vh;
   }
 `;
 
 const LandingContent = styled.div`
-  padding-top: clamp(14.0625rem, 30.8642vh, 30.8642vh);
+  padding-top: clamp(14.0625rem, 30.8642vh, 22.0625rem);
 
   @media (max-width: 1024px) and (orientation: portrait) {
     padding-top: unset;
@@ -88,59 +88,6 @@ const LandingContent = styled.div`
 
   @media (max-width: 576px) and (orientation: portrait) {
     padding-top: 4rem;
-  }
-`;
-
-const Pre = styled.span`
-  display: block;
-  margin-bottom: 1.5rem;
-  font-weight: 400;
-  font-size: 0.875rem;
-  letter-spacing: 0.625rem;
-  color: ${(props) => props.theme.colors.white};
-  text-transform: uppercase;
-  opacity: 0.5;
-
-  @media (max-width: 576px) and (orientation: portrait) {
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
-  }
-`;
-
-const Heading = styled.h1`
-  max-width: 24.75rem;
-  margin: 0 0 1.5625rem 0;
-  font-size: 3.5rem;
-  line-height: 3.625rem;
-  color: ${(props) => props.theme.colors.white};
-  text-transform: uppercase;
-  letter-spacing: 0.125rem;
-
-  @media (max-width: 576px) and (orientation: portrait) {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-    margin-bottom: 1.5rem;
-  }
-`;
-
-const Paragraph = styled.p`
-  max-width: 21.8125rem;
-  margin-top: 0;
-  margin-bottom: 2.5rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  line-height: 1.5625rem;
-  color: ${(props) => props.theme.colors.white};
-  opacity: 0.75;
-
-  @media (max-width: 1024px) and (orientation: portrait) {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  @media (max-width: 576px) and (orientation: portrait) {
-    font-size: 0.9375rem;
-    margin-bottom: 1.75rem;
   }
 `;
 
@@ -161,6 +108,10 @@ const Products = styled(Container)`
 
 const Featured = styled(Container)`
   margin-top: 12.5rem;
+
+  @media (max-width: 1024px) and (orientation: portrait) {
+    margin-top: 6rem;
+  }
 `;
 
 const FeaturedProductOne = styled.div`
@@ -172,9 +123,22 @@ const FeaturedProductOne = styled.div`
   background-color: ${(props) => props.theme.colors.primary};
   border-radius: 0.5rem;
   overflow: hidden;
+
+  @media (max-width: 1024px) and (orientation: portrait) {
+    height: 45rem;
+    padding: 0;
+    text-align: center;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    padding: 0 1.5rem;
+    height: 37.5rem;
+  }
 `;
 
-const FeaturedImage = styled.div`
+const FeaturedImageOne = styled.div`
   position: absolute;
   bottom: 0;
   left: 7.3125rem;
@@ -184,6 +148,20 @@ const FeaturedImage = styled.div`
   background-image: url("${(props) => props.url}");
   background-repeat: no-repeat;
   background-size: contain;
+
+  @media (max-width: 1024px) and (orientation: portrait) {
+    width: 12.3125rem;
+    height: 14.8125rem;
+    top: 3.25rem;
+    left: 50%;
+    bottom: unset;
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    width: 10.75rem;
+    height: 12.9375rem;
+  }
 `;
 
 const Rings = styled.div`
@@ -196,9 +174,57 @@ const Rings = styled.div`
   z-index: 1;
   width: 59rem;
   height: 59rem;
+
+  @media (max-width: 1024px) and (orientation: portrait) {
+    top: -18rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    width: 34.875rem;
+    height: 34.875rem;
+    top: -7.5625rem;
+  }
 `;
 
 const ProductOneContent = styled.div`
   position: relative;
   z-index: 3;
+
+  @media (max-width: 1024px) and (orientation: portrait) {
+    padding-bottom: 4rem;
+  }
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    padding-bottom: 3.4375rem;
+  }
+`;
+
+const FeaturedProductTwo = styled.div`
+  height: 20rem;
+  margin-top: 3rem;
+  border-radius: 0.5rem;
+  background-image: url("/assets/home/featured-zx7.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media (max-width: 1024px) and (orientation: portrait) {
+    margin-top: 2.5rem;
+  }
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    margin-top: 1.5rem;
+    background-image: url("/assets/home/featured-zx7-mobile.svg");
+  }
+`;
+
+const FeaturedTwoContent = styled.div`
+  padding-top: 6.25rem;
+  padding-left: 5.9375rem;
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    padding-left: 1.5rem;
+  }
 `;
