@@ -14,7 +14,7 @@ const Navigation = () => {
       <Content>
         <FlexContainer>
           <MenuIcon />
-          {size.orientation === "landscape" ||
+          {size.width > 1024 ||
           (size.width > 576 &&
             size.width <= 1024 &&
             size.orientation === "portrait") ? (

@@ -17,7 +17,11 @@ export default function Home() {
         <LandingContent>
           <Pre value="New product" />
           <Heading as="h1" value="XX99 Mark II Headphones" />
-          <Paragraph value="Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast." />
+          <Paragraph
+            page="home"
+            white
+            value="Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast."
+          />
           <Button primary value="See Product" />
         </LandingContent>
       </LandingSection>
@@ -35,7 +39,11 @@ export default function Home() {
           <Rings />
           <ProductOneContent>
             <Heading page="home" as="h1" value="ZX9 SPEAKER" />
-            <Paragraph value="Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound." />
+            <Paragraph
+              page="home"
+              white
+              value="Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound."
+            />
             <Button secondary value="See Product" />
           </ProductOneContent>
         </FeaturedProductOne>
@@ -45,7 +53,29 @@ export default function Home() {
             <Button outlined value="See Product" />
           </FeaturedTwoContent>
         </FeaturedProductTwo>
+        <FeaturedProductThree>
+          <ProductImage />
+          <ProductInfo>
+            <FeaturedThreeContent>
+              <Heading page="home" as="h3" value="YX1 EARPHONES" />
+              <Button outlined value="See Product" />
+            </FeaturedThreeContent>
+          </ProductInfo>
+        </FeaturedProductThree>
       </Featured>
+      <About>
+        <AboutContent>
+          <Heading page="home" as="h2">
+            Bringing you the <span>best</span> audio gear
+          </Heading>
+          <Paragraph
+            about
+            gray
+            value="Located at the heart of New York City, Audiophile is the premier store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment."
+          />
+        </AboutContent>
+        <AboutImage />
+      </About>
     </>
   );
 }
@@ -226,5 +256,107 @@ const FeaturedTwoContent = styled.div`
 
   @media (max-width: 576px) and (orientation: portrait) {
     padding-left: 1.5rem;
+  }
+`;
+
+const FeaturedProductThree = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3rem;
+
+  @media (max-width: 1024px) and (orientation: portrait) {
+    margin-top: 2.5rem;
+  }
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    flex-direction: column;
+    margin-top: 1.5rem;
+  }
+`;
+
+const ProductImage = styled.div`
+  width: 33.75rem;
+  height: 20rem;
+  border-radius: 0.5rem;
+  background-image: url("/assets/home/featured-yx1.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @media (max-width: 1024px) and (orientation: portrait) {
+    width: 28.25rem;
+    height: 20rem;
+  }
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    width: 100%;
+    height: 12.5rem;
+  }
+`;
+
+const ProductInfo = styled.div`
+  width: 33.75rem;
+  height: 20rem;
+  border-radius: 0.5rem;
+  background-color: ${(props) => props.theme.colors.gray};
+
+  @media (max-width: 1024px) and (orientation: portrait) {
+    width: 28.25rem;
+    height: 20rem;
+  }
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    width: 100%;
+    height: 12.5rem;
+    margin-top: 1.5rem;
+  }
+`;
+
+const FeaturedThreeContent = styled.div`
+  padding-top: 6.25rem;
+  padding-left: 5.9375rem;
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    padding-top: 2.5rem;
+    padding-left: 1.5rem;
+  }
+`;
+
+const About = styled(Container)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12.5rem 0;
+
+  @media (max-width: 1024px) and (orientation: portrait) {
+    flex-direction: column-reverse;
+    margin: 6rem 0;
+  }
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    margin: 7.5rem 0;
+  }
+`;
+
+const AboutContent = styled.div`
+  @media (max-width: 1024px) and (orientation: portrait) {
+    text-align: center;
+  }
+`;
+
+const AboutImage = styled.img`
+  width: 33.75rem;
+  height: 36.75rem;
+  border-radius: 0.5rem;
+  background-image: url("/assets/home/about-desktop.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @media (max-width: 1024px) and (orientation: portrait) {
+    width: 100%;
+    height: 24.75rem;
+    background-image: url("/assets/home/about-tablet.svg");
   }
 `;

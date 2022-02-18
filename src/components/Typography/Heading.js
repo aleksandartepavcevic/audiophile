@@ -1,10 +1,10 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const Heading = ({ value, as, page }) => {
+const Heading = ({ value, as, page, children }) => {
   return (
     <StyledHeading as={as} page={page}>
-      {value}
+      {value ?? children}
     </StyledHeading>
   );
 };
@@ -40,6 +40,38 @@ const StyledHeading = styled.h1`
 
             @media (max-width: 576px) and (orientation: portrait) {
               max-width: 14.25rem;
+            }
+          `}
+      `;
+    } else if (as === "h2") {
+      return css`
+        font-size: 2.5rem;
+        line-height: 2.75rem;
+        letter-spacing: 0.0875rem;
+        text-transform: uppercase;
+        color: ${(props) => props.theme.colors.black};
+
+        @media (max-width: 576px) and (orientation: portrait) {
+          font-size: 1.75rem;
+          line-height: 2.1875rem;
+        }
+
+        ${({ page }) =>
+          page === "home" &&
+          css`
+            max-width: 27.8125rem;
+
+            span {
+              color: ${(props) => props.theme.colors.primary};
+            }
+
+            @media (max-width: 1024px) and (orientation: portrait) {
+              max-width: 35.75rem;
+              margin: 3.875rem auto 2rem;
+            }
+
+            @media (max-width: 576px) and (orientation: portrait) {
+              margin-top: 2.5rem;
             }
           `}
       `;

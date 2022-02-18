@@ -1,20 +1,21 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const Paragraph = ({ value }) => {
-  return <StyledParagraph>{value}</StyledParagraph>;
+const Paragraph = ({ value, page, ...rest }) => {
+  return (
+    <StyledParagraph page={page} {...rest}>
+      {value}
+    </StyledParagraph>
+  );
 };
 
 export default Paragraph;
 
 const StyledParagraph = styled.p`
-  max-width: 21.8125rem;
   margin-top: 0;
-  margin-bottom: 2.5rem;
   font-size: 0.9375rem;
   font-weight: 500;
   line-height: 1.5625rem;
-  color: ${(props) => props.theme.colors.white};
   opacity: 0.75;
 
   @media (max-width: 1024px) and (orientation: portrait) {
@@ -26,4 +27,46 @@ const StyledParagraph = styled.p`
     font-size: 0.9375rem;
     margin-bottom: 1.75rem;
   }
+
+  ${({ white }) =>
+    white &&
+    css`
+      color: ${(props) => props.theme.colors.white};
+    `}
+
+  ${({ gray }) =>
+    gray &&
+    css`
+      color: ${(props) => props.theme.colors.black}80;
+    `}
+
+  ${({ about }) =>
+    about &&
+    css`
+      max-width: 27.8125rem;
+
+      @media (max-width: 1024px) and (orientation: portrait) {
+        max-width: 45.75rem;
+      }
+    `}
+
+  ${({ footer }) =>
+    footer &&
+    css`
+      max-width: 33.75rem;
+
+      @media (max-width: 1024px) and (orientation: portrait) {
+        max-width: unset;
+        margin: 0;
+      }
+    `}
+
+  ${({ page }) => {
+    if (page === "home") {
+      return css`
+        max-width: 21.8125rem;
+        margin-bottom: 2.5rem;
+      `;
+    }
+  }}
 `;
