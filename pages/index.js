@@ -29,9 +29,18 @@ export default function Home() {
         <Product
           name="Headphones"
           image="/assets/home/product-headphones.svg"
+          link="/headphones"
         />
-        <Product name="Speakers" image="/assets/home/product-speakers.svg" />
-        <Product name="Earphones" image="/assets/home/product-earphones.svg" />
+        <Product
+          name="Speakers"
+          image="/assets/home/product-speakers.svg"
+          link="/speakers"
+        />
+        <Product
+          name="Earphones"
+          image="/assets/home/product-earphones.svg"
+          link="/earphones"
+        />
       </Products>
       <Featured>
         <FeaturedProductOne>

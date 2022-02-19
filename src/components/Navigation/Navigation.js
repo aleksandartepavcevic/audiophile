@@ -18,19 +18,27 @@ const Navigation = () => {
           (size.width > 576 &&
             size.width <= 1024 &&
             size.orientation === "portrait") ? (
-            <Logo src="/assets/navigation/logo.svg" />
+            <Link href="/">
+              <a>
+                <Logo src="/assets/navigation/logo.svg" />
+              </a>
+            </Link>
           ) : null}
           <Links>
             <Link href="/">Home</Link>
-            <Link href="/">Headphones</Link>
-            <Link href="/">Speakers</Link>
-            <Link href="/">Earphones</Link>
+            <Link href="/headphones">Headphones</Link>
+            <Link href="/speakers">Speakers</Link>
+            <Link href="/earphones">Earphones</Link>
           </Links>
         </FlexContainer>
         {size.width <= 576 && size.orientation === "portrait" ? (
-          <Logo src="/assets/navigation/logo.svg" />
+          <Link href="/">
+            <Logo src="/assets/navigation/logo.svg" />
+          </Link>
         ) : null}
-        <CartIcon />
+        <Link href="/cart">
+          <CartIcon />
+        </Link>
       </Content>
     </StyledContainer>
   );
@@ -85,9 +93,11 @@ const Logo = styled.img`
 `;
 
 const Links = styled.div`
+  display: flex;
   margin-left: 11.25rem;
 
   a {
+    position: relative;
     margin: 0 1.0625rem;
     font-size: 0.8125rem;
     font-size: 700;
@@ -95,6 +105,33 @@ const Links = styled.div`
     color: ${(props) => props.theme.colors.white};
     text-decoration: none;
     text-transform: uppercase;
+
+    transition: color 0.2s ease-in-out;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: calc(100% + 2.1rem);
+      left: 0;
+      z-index: 10;
+      display: block;
+      width: 100%;
+      height: 0.125rem;
+      background-color: ${(props) => props.theme.colors.primary};
+      transform: scaleX(0);
+      transform-origin: right;
+
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &:hover {
+      color: ${(props) => props.theme.colors.primary};
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
   }
 
   @media (max-width: 1024px) and (orientation: portrait) {
@@ -106,6 +143,12 @@ const CartIcon = styled(BsCart3)`
   font-size: 1.4375rem;
   color: ${(props) => props.theme.colors.white};
   cursor: pointer;
+
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: ${(props) => props.theme.colors.primary};
+  }
 `;
 
 const MenuIcon = styled(GiHamburgerMenu)`

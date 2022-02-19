@@ -16,12 +16,14 @@ const Footer = () => {
   return (
     <Container>
       <Navigation>
-        <Logo src="/assets/navigation/logo.svg" />
+        <Link href="/">
+          <Logo src="/assets/navigation/logo.svg" />
+        </Link>
         <Links>
           <Link href="/">Home</Link>
-          <Link href="/">Headphones</Link>
-          <Link href="/">Speakers</Link>
-          <Link href="/">Earphones</Link>
+          <Link href="/headphones">Headphones</Link>
+          <Link href="/speakers">Speakers</Link>
+          <Link href="/earphones">Earphones</Link>
         </Links>
       </Navigation>
       <Content>
@@ -121,6 +123,12 @@ const Links = styled.div`
     text-decoration: none;
     text-transform: uppercase;
 
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: ${(props) => props.theme.colors.primary};
+    }
+
     &:last-of-type {
       margin: 0 0 0 1.0625rem;
     }
@@ -182,6 +190,12 @@ const Socials = styled.div`
     font-size: 1.5rem;
     color: ${(props) => props.theme.colors.white};
     cursor: pointer;
+
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: ${(props) => props.theme.colors.primary};
+    }
 
     &:not(:last-of-type) {
       margin-right: 1rem;

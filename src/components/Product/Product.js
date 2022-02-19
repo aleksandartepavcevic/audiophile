@@ -1,16 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "next/link";
 import { BiChevronRight } from "react-icons/bi";
 
-const Product = ({ name, image }) => {
+const Product = ({ name, image, link }) => {
   return (
-    <Container>
-      <Image url={image} />
-      <Name>{name}</Name>
-      <StyledLink>
-        Shop <Chevron />
-      </StyledLink>
-    </Container>
+    <Link href={link}>
+      <Container>
+        <Image url={image} />
+        <Name>{name}</Name>
+        <StyledLink>
+          Shop <Chevron />
+        </StyledLink>
+      </Container>
+    </Link>
   );
 };
 
@@ -23,6 +26,7 @@ const Container = styled.div`
   background-color: ${(props) => props.theme.colors.gray};
   border-radius: 0.5rem;
   text-align: center;
+  cursor: pointer;
 
   @media (max-width: 1024px) and (orientation: portrait) {
     width: 18.9375rem;
@@ -90,7 +94,7 @@ const Image = styled.div`
   }
 `;
 
-const StyledLink = styled.span`
+const StyledLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;

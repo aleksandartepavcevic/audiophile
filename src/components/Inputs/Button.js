@@ -21,6 +21,12 @@ const StyledButton = styled.button`
     css`
       background-color: ${(props) => props.theme.colors.primary};
       color: ${(props) => props.theme.colors.white};
+
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: ${(props) => props.theme.colors.primaryLight};
+      }
     `}
 
   ${({ secondary }) =>
@@ -28,6 +34,12 @@ const StyledButton = styled.button`
     css`
       background-color: ${(props) => props.theme.colors.black};
       color: ${(props) => props.theme.colors.white};
+
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: ${(props) => props.theme.colors.secondaryLight};
+      }
     `}
 
   ${({ outlined }) =>
@@ -36,5 +48,12 @@ const StyledButton = styled.button`
       border: 0.0625rem solid ${(props) => props.theme.colors.black};
       background-color: transparent;
       color: ${(props) => props.theme.colors.black};
+
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+      &:hover {
+        color: ${(props) => props.theme.colors.white};
+        background-color: ${(props) => props.theme.colors.black};
+      }
     `}
 `;
