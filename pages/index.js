@@ -6,25 +6,97 @@ import Head from "next/head";
 import Heading from "../src/components/Typography/Heading";
 import Paragraph from "../src/components/Typography/Paragraph";
 import Pre from "../src/components/Typography/Pre";
+import { motion } from "framer-motion";
+import Preloader from "../src/components/Preloader/Preloader";
 
 export default function Home() {
+  const container = {
+    animate: {
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 2.15,
+      },
+    },
+  };
+
+  const item = {
+    initial: {
+      skewY: 3,
+      y: 200,
+      opacity: 0,
+    },
+    animate: {
+      skewY: 0,
+      y: 0,
+      opacity: 1,
+      transition: {
+        ease: [0.6, 0.01, -0.05, 0.95],
+        duration: 1.6,
+      },
+    },
+    exit: {
+      skewY: -3,
+      y: -200,
+      opacity: 0,
+      transition: {
+        ease: "easeInOut",
+        duration: 0.8,
+      },
+    },
+  };
+
+  const button = {
+    initial: {
+      scale: 0.8,
+      opacity: 0,
+    },
+    animate: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        ease: [0.6, 0.01, -0.05, 0.95],
+        duration: 0.8,
+        delay: 3.6,
+      },
+    },
+    exit: {
+      scale: 0.8,
+      opacity: 0,
+      transition: {
+        ease: "easeInOut",
+        duration: 0.8,
+      },
+    },
+  };
+
   return (
-    <>
+    <motion.div exit={{ opacity: 0, transition: { duration: 3 } }}>
       <Head>
         <title>Audiophile - Home</title>
       </Head>
-      <LandingSection>
+      <Preloader />
+      <MotionLandingSection
+        variants={container}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         <LandingContent>
-          <Pre value="New product" />
-          <Heading as="h1" value="XX99 Mark II Headphones" />
-          <Paragraph
+          <MotionPre variants={item} value="New product" />
+          <MotionHeading
+            variants={item}
+            as="h1"
+            value="XX99 Mark II Headphones"
+          />
+          <MotionParagraph
+            variants={item}
             page="home"
             white
             value="Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast."
           />
-          <Button primary value="See Product" />
+          <MotionButton variants={button} primary value="See Product" />
         </LandingContent>
-      </LandingSection>
+      </MotionLandingSection>
       <Products>
         <Product
           name="Headphones"
@@ -85,16 +157,16 @@ export default function Home() {
         </AboutContent>
         <AboutImage />
       </About>
-    </>
+    </motion.div>
   );
 }
 
-const LandingSection = styled(Container)`
+const MotionLandingSection = motion(styled(Container)`
   position: relative;
   height: clamp(45.5625rem, 100vh, 67.5rem);
   background-color: #141414;
   background-image: url("/assets/home/hero.svg");
-  background-position: 0 30%;
+  background-position: 0 -3rem;
   background-size: contain;
   background-repeat: no-repeat;
 
@@ -102,8 +174,8 @@ const LandingSection = styled(Container)`
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: unset;
-    height: 45.5625rem;
+    // min-height: unset;
+    height: 100vh;
     background-image: url("/assets/home/hero-tablet.svg");
     background-position: center center;
   }
@@ -115,7 +187,12 @@ const LandingSection = styled(Container)`
     max-height: 920px;
     height: 100vh;
   }
-`;
+`);
+
+const MotionHeading = motion(Heading);
+const MotionPre = motion(Pre);
+const MotionParagraph = motion(Paragraph);
+const MotionButton = motion(Button);
 
 const LandingContent = styled.div`
   padding-top: clamp(14.0625rem, 30.8642vh, 22.0625rem);

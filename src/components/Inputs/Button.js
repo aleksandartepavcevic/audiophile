@@ -1,9 +1,14 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const Button = ({ value, ...rest }) => {
-  return <StyledButton {...rest}>{value}</StyledButton>;
-};
+const Button = React.forwardRef((props, ref) => {
+  const { value, ...rest } = props;
+  return (
+    <StyledButton ref={ref} {...rest}>
+      {value}
+    </StyledButton>
+  );
+});
 
 export default Button;
 

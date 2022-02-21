@@ -1,13 +1,14 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const Heading = ({ value, as, page, children }) => {
+const Heading = React.forwardRef((props, ref) => {
+  const { value, as, page, children, ...rest } = props;
   return (
-    <StyledHeading as={as} page={page}>
+    <StyledHeading as={as} page={page} ref={ref} {...rest}>
       {value ?? children}
     </StyledHeading>
   );
-};
+});
 
 export default Heading;
 

@@ -1,13 +1,14 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const Paragraph = ({ value, page, ...rest }) => {
+const Paragraph = React.forwardRef((props, ref) => {
+  const { value, page, ...rest } = props;
   return (
-    <StyledParagraph page={page} {...rest}>
+    <StyledParagraph ref={ref} page={page} {...rest}>
       {value}
     </StyledParagraph>
   );
-};
+});
 
 export default Paragraph;
 
@@ -16,7 +17,6 @@ const StyledParagraph = styled.p`
   font-size: 0.9375rem;
   font-weight: 500;
   line-height: 1.5625rem;
-  opacity: 0.75;
 
   @media (max-width: 1024px) and (orientation: portrait) {
     margin-left: auto;
@@ -31,7 +31,7 @@ const StyledParagraph = styled.p`
   ${({ white }) =>
     white &&
     css`
-      color: ${(props) => props.theme.colors.white};
+      color: ${(props) => props.theme.colors.white}bf;
     `}
 
   ${({ gray }) =>
