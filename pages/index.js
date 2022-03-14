@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
+
 import { Container } from "../src/components/layouts/layouts";
 import Button from "../src/components/Inputs/Button";
 import Product from "../src/components/Product/Product";
@@ -6,15 +8,13 @@ import Head from "next/head";
 import Heading from "../src/components/Typography/Heading";
 import Paragraph from "../src/components/Typography/Paragraph";
 import Pre from "../src/components/Typography/Pre";
-import { motion } from "framer-motion";
-import Preloader from "../src/components/Preloader/Preloader";
 
-export default function Home() {
+export default function Home({ isInitial }) {
   const container = {
     animate: {
       transition: {
         staggerChildren: 0.15,
-        delayChildren: 2.15,
+        delayChildren: isInitial ? 2.15 : 0,
       },
     },
   };
@@ -34,15 +34,6 @@ export default function Home() {
         duration: 1.6,
       },
     },
-    exit: {
-      skewY: -3,
-      y: -200,
-      opacity: 0,
-      transition: {
-        ease: "easeInOut",
-        duration: 0.8,
-      },
-    },
   };
 
   const button = {
@@ -56,25 +47,40 @@ export default function Home() {
       transition: {
         ease: [0.6, 0.01, -0.05, 0.95],
         duration: 0.8,
-        delay: 3.6,
+        delay: isInitial ? 3.6 : 1.45,
       },
     },
-    exit: {
-      scale: 0.8,
-      opacity: 0,
+  };
+
+  const products = {
+    whileInView: {
       transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const productItem = {
+    initial: {
+      opacity: 0,
+      y: 100,
+    },
+    whileInView: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.33,
         ease: "easeInOut",
-        duration: 0.8,
       },
     },
   };
 
   return (
-    <motion.div exit={{ opacity: 0, transition: { duration: 3 } }}>
+    <div>
       <Head>
         <title>Audiophile - Home</title>
       </Head>
-      <Preloader />
       <MotionLandingSection
         variants={container}
         initial="initial"
@@ -97,23 +103,33 @@ export default function Home() {
           <MotionButton variants={button} primary value="See Product" />
         </LandingContent>
       </MotionLandingSection>
-      <Products>
-        <Product
+      <MotionProducts
+        variants={products}
+        initial="initial"
+        whileInView="whileInView"
+        viewport={{
+          once: true,
+        }}
+      >
+        <MotionProduct
+          variants={productItem}
           name="Headphones"
           image="/assets/home/product-headphones.svg"
           link="/headphones"
         />
-        <Product
+        <MotionProduct
+          variants={productItem}
           name="Speakers"
           image="/assets/home/product-speakers.svg"
           link="/speakers"
         />
-        <Product
+        <MotionProduct
+          variants={productItem}
           name="Earphones"
           image="/assets/home/product-earphones.svg"
           link="/earphones"
         />
-      </Products>
+      </MotionProducts>
       <Featured>
         <FeaturedProductOne>
           <FeaturedImageOne url="/assets/home/featured-zx9.svg" />
@@ -150,14 +166,14 @@ export default function Home() {
             Bringing you the <span>best</span> audio gear
           </Heading>
           <Paragraph
-            about
+            variant="about"
             gray
             value="Located at the heart of New York City, Audiophile is the premier store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment."
           />
         </AboutContent>
         <AboutImage />
       </About>
-    </motion.div>
+    </div>
   );
 }
 
@@ -207,7 +223,7 @@ const LandingContent = styled.div`
   }
 `;
 
-const Products = styled(Container)`
+const MotionProducts = motion(styled(Container)`
   display: flex;
   justify-content: space-between;
   margin-top: 12.5rem;
@@ -220,7 +236,9 @@ const Products = styled(Container)`
     flex-direction: column;
     justify-content: center;
   }
-`;
+`);
+
+const MotionProduct = motion(Product);
 
 const Featured = styled(Container)`
   margin-top: 12.5rem;

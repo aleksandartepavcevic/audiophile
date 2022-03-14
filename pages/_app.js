@@ -1,23 +1,35 @@
+import { useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import "./../styles/global.scss";
 import { theme } from "../src/theme/theme";
+import { AnimatePresence } from "framer-motion";
+
 import Navigation from "../src/components/Navigation/Navigation";
 import Head from "next/head";
 import Footer from "../src/components/Footer/Footer";
-import { AnimatePresence } from "framer-motion";
+import Loader from "../src/components/Loader/Loader";
 
-function MyApp({ Component, pageProps }) {
+let isInitial = true;
+
+function MyApp({ Component, pageProps, router }) {
+  useEffect(() => {
+    if (isInitial) isInitial = false;
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <AnimatePresence onExitComplete={true}>
-      <ThemeProvider theme={theme}>
-        <Head>
-          <title>Audiophile</title>
-        </Head>
-        <Navigation />
-        <Component {...pageProps} />
-        <Footer />
-      </ThemeProvider>
-    </AnimatePresence>
+    <ThemeProvider theme={theme}>
+      <Head>
+        <title>Audiophile</title>
+      </Head>
+      <Navigation />
+      <AnimatePresence exitBeforeEnter>
+        {isInitial && <Loader pre />}
+        {!isInitial && <Loader page />}
+        <Component {...pageProps} key={router.route} isInitial={isInitial} />
+      </AnimatePresence>
+      <Footer />
+    </ThemeProvider>
   );
 }
 

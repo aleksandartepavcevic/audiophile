@@ -30,7 +30,7 @@ const Footer = () => {
         <Paragraph
           value="Audiophile is an all in one stop to fulfill your audio needs. We're a small team of music lovers and sound specialists who are devoted to helping you get the most out of personal audio. Come and visit our demo facility - we’re open 7 days a week."
           white
-          footer
+          variant="footer"
         />
         {size.width > 1024 ? (
           <Socials>
@@ -41,7 +41,11 @@ const Footer = () => {
         ) : null}
       </Content>
       <Copyright>
-        <Paragraph value="Copyright 2021. All Rights Reserved" white footer />
+        <Paragraph
+          value="Copyright 2021. All Rights Reserved"
+          white
+          variant="footer"
+        />
         {size.width <= 1024 && size.orientation === "portrait" ? (
           <Socials>
             <Facebook />

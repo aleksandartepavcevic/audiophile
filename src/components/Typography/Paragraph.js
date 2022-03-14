@@ -2,9 +2,9 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 const Paragraph = React.forwardRef((props, ref) => {
-  const { value, page, ...rest } = props;
+  const { value, page, variant, ...rest } = props;
   return (
-    <StyledParagraph ref={ref} page={page} {...rest}>
+    <StyledParagraph ref={ref} page={page} variant={variant} {...rest}>
       {value}
     </StyledParagraph>
   );
@@ -40,26 +40,28 @@ const StyledParagraph = styled.p`
       color: ${(props) => props.theme.colors.black}80;
     `}
 
-  ${({ about }) =>
-    about &&
-    css`
-      max-width: 27.8125rem;
+  ${({ variant }) => {
+    if (variant === "about") {
+      return css`
+        max-width: 27.8125rem;
 
-      @media (max-width: 1024px) and (orientation: portrait) {
-        max-width: 45.75rem;
-      }
-    `}
+        @media (max-width: 1024px) and (orientation: portrait) {
+          max-width: 45.75rem;
+        }
+      `;
+    }
 
-  ${({ footer }) =>
-    footer &&
-    css`
-      max-width: 33.75rem;
+    if (variant === "footer") {
+      return css`
+        max-width: 33.75rem;
 
-      @media (max-width: 1024px) and (orientation: portrait) {
-        max-width: unset;
-        margin: 0;
-      }
-    `}
+        @media (max-width: 1024px) and (orientation: portrait) {
+          max-width: unset;
+          margin: 0;
+        }
+      `;
+    }
+  }}
 
   ${({ page }) => {
     if (page === "home") {

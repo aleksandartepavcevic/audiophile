@@ -3,10 +3,11 @@ import styled from "styled-components";
 import Link from "next/link";
 import { BiChevronRight } from "react-icons/bi";
 
-const Product = ({ name, image, link }) => {
+const Product = React.forwardRef((props, ref) => {
+  const { name, image, link } = props;
   return (
     <Link href={link}>
-      <Container>
+      <Container ref={ref}>
         <Image url={image} />
         <Name>{name}</Name>
         <StyledLink>
@@ -15,7 +16,7 @@ const Product = ({ name, image, link }) => {
       </Container>
     </Link>
   );
-};
+});
 
 export default Product;
 
