@@ -10,7 +10,14 @@ const Loader = ({ pre, page }) => {
       y: "-100%",
       transition: {
         duration: 1,
-        delay: 2,
+        delay: 2.2,
+        ease: "easeInOut",
+      },
+    },
+    exit: {
+      y: 0,
+      transition: {
+        duration: 1,
         ease: "easeInOut",
       },
     },
@@ -28,6 +35,13 @@ const Loader = ({ pre, page }) => {
         ease: "easeInOut",
       },
     },
+    exit: {
+      y: 0,
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+      },
+    },
   };
 
   const secondElement = {
@@ -39,6 +53,14 @@ const Loader = ({ pre, page }) => {
       transition: {
         duration: 1,
         delay: 2,
+        ease: "easeInOut",
+      },
+    },
+    exit: {
+      y: 0,
+      transition: {
+        duration: 1,
+        delay: 0.2,
         ease: "easeInOut",
       },
     },

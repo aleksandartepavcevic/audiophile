@@ -2,25 +2,49 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { BiChevronRight } from "react-icons/bi";
+import { motion } from "framer-motion";
+import { theme } from "../../theme/theme";
 
 const Product = React.forwardRef((props, ref) => {
   const { name, image, link } = props;
+
+  const productImage = {
+    initial: {
+      x: "-50%",
+      scale: 1,
+    },
+    whileHover: {
+      scale: 1.1,
+      transition: {
+        duration: 0.2,
+        type: "tween",
+        ease: "easeIn",
+      },
+    },
+  };
+
+  const productLink = {
+    whileHover: {
+      color: theme.colors.primary,
+    },
+  };
+
   return (
-    <Link href={link}>
-      <Container ref={ref}>
-        <Image url={image} />
+    <Link href={link} scroll={false}>
+      <MotionContainer initial="initial" whileHover="whileHover" ref={ref}>
+        <MotionImage variants={productImage} url={image} />
         <Name>{name}</Name>
-        <StyledLink>
+        <MotionLink variants={productLink}>
           Shop <Chevron />
-        </StyledLink>
-      </Container>
+        </MotionLink>
+      </MotionContainer>
     </Link>
   );
 });
 
 export default Product;
 
-const Container = styled.div`
+const MotionContainer = motion(styled.div`
   position: relative;
   width: 21.875rem;
   height: 12.75rem;
@@ -42,7 +66,7 @@ const Container = styled.div`
       margin-bottom: 4.25rem;
     }
   }
-`;
+`);
 
 const Name = styled.h6`
   margin-top: 7.25rem;
@@ -60,7 +84,7 @@ const Name = styled.h6`
   }
 `;
 
-const Image = styled.div`
+const MotionImage = motion(styled.div`
   position: absolute;
   z-index: 10;
   left: 50%;
@@ -93,9 +117,9 @@ const Image = styled.div`
   @media (max-width: 576px) and (orientation: portrait) {
     top: -3rem;
   }
-`;
+`);
 
-const StyledLink = styled.a`
+const MotionLink = motion(styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,7 +128,7 @@ const StyledLink = styled.a`
   text-decoration: none;
   text-transform: uppercase;
   color: ${(props) => props.theme.colors.black}80;
-`;
+`);
 
 const Chevron = styled(BiChevronRight)`
   font-size: 1.5rem;

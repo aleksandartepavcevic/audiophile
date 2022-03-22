@@ -7,7 +7,6 @@ import { AnimatePresence } from "framer-motion";
 import Navigation from "../src/components/Navigation/Navigation";
 import Head from "next/head";
 import Footer from "../src/components/Footer/Footer";
-import Loader from "../src/components/Loader/Loader";
 
 let isInitial = true;
 
@@ -24,8 +23,6 @@ function MyApp({ Component, pageProps, router }) {
       </Head>
       <Navigation />
       <AnimatePresence exitBeforeEnter>
-        {isInitial && <Loader pre />}
-        {!isInitial && <Loader page />}
         <Component {...pageProps} key={router.route} isInitial={isInitial} />
       </AnimatePresence>
       <Footer />

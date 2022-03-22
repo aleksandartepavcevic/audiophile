@@ -20,10 +20,18 @@ const Footer = () => {
           <Logo src="/assets/navigation/logo.svg" />
         </Link>
         <Links>
-          <Link href="/">Home</Link>
-          <Link href="/headphones">Headphones</Link>
-          <Link href="/speakers">Speakers</Link>
-          <Link href="/earphones">Earphones</Link>
+          <Link href="/" scroll={false}>
+            Home
+          </Link>
+          <Link href="/headphones" scroll={false}>
+            Headphones
+          </Link>
+          <Link href="/speakers" scroll={false}>
+            Speakers
+          </Link>
+          <Link href="/earphones" scroll={false}>
+            Earphones
+          </Link>
         </Links>
       </Navigation>
       <Content>

@@ -111,7 +111,7 @@ const Navigation = () => {
           (size.width > 576 &&
             size.width <= 1024 &&
             size.orientation === "portrait") ? (
-            <Link href="/">
+            <Link href="/" scroll={false}>
               <a>
                 <MotionLogo variants={logo} src="/assets/navigation/logo.svg" />
               </a>
@@ -123,22 +123,22 @@ const Navigation = () => {
             animate="animate"
             exit="exit"
           >
-            <Link href="/">
+            <Link href="/" scroll={false}>
               <motion.a variants={link}>Home</motion.a>
             </Link>
-            <Link href="/headphones">
+            <Link href="/headphones" scroll={false}>
               <motion.a variants={link}>Headphones</motion.a>
             </Link>
-            <Link href="/speakers">
+            <Link href="/speakers" scroll={false}>
               <motion.a variants={link}>Speakers</motion.a>
             </Link>
-            <Link href="/earphones">
+            <Link href="/earphones" scroll={false}>
               <motion.a variants={link}>Earphones</motion.a>
             </Link>
           </MotionLinks>
         </MotionFlexContainer>
         {size.width <= 576 && size.orientation === "portrait" ? (
-          <Link href="/">
+          <Link href="/" scroll={false}>
             <MotionLogo
               variants={logo}
               initial="initial"

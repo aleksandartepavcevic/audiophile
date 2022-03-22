@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, useTransform, useViewportScroll } from "framer-motion";
 
 import { Container } from "../src/components/layouts/layouts";
 import Button from "../src/components/Inputs/Button";
@@ -8,13 +8,17 @@ import Head from "next/head";
 import Heading from "../src/components/Typography/Heading";
 import Paragraph from "../src/components/Typography/Paragraph";
 import Pre from "../src/components/Typography/Pre";
+import Loader from "../src/components/Loader/Loader";
 
 export default function Home({ isInitial }) {
+  const { scrollYProgress } = useViewportScroll();
+  const y1 = useTransform(scrollYProgress, [0, 1], [-115, 200]);
+
   const container = {
     animate: {
       transition: {
         staggerChildren: 0.15,
-        delayChildren: isInitial ? 2.15 : 0,
+        delayChildren: 2.15,
       },
     },
   };
@@ -47,7 +51,7 @@ export default function Home({ isInitial }) {
       transition: {
         ease: [0.6, 0.01, -0.05, 0.95],
         duration: 0.8,
-        delay: isInitial ? 3.6 : 1.45,
+        delay: 3.6,
       },
     },
   };
@@ -70,14 +74,16 @@ export default function Home({ isInitial }) {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.33,
-        ease: "easeInOut",
+        duration: 0.6,
+        ease: [0.68, -0.6, 0.32, 1.6],
       },
     },
   };
 
   return (
     <div>
+      {isInitial && <Loader pre />}
+      {!isInitial && <Loader page />}
       <Head>
         <title>Audiophile - Home</title>
       </Head>
@@ -131,8 +137,11 @@ export default function Home({ isInitial }) {
         />
       </MotionProducts>
       <Featured>
-        <FeaturedProductOne>
-          <FeaturedImageOne url="/assets/home/featured-zx9.svg" />
+        <MotionFeaturedProductOne>
+          <MotionFeaturedImageOne
+            style={{ y: y1 }}
+            url="/assets/home/featured-zx9.svg"
+          />
           <Rings />
           <ProductOneContent>
             <Heading page="home" as="h1" value="ZX9 SPEAKER" />
@@ -143,7 +152,7 @@ export default function Home({ isInitial }) {
             />
             <Button secondary value="See Product" />
           </ProductOneContent>
-        </FeaturedProductOne>
+        </MotionFeaturedProductOne>
         <FeaturedProductTwo>
           <FeaturedTwoContent>
             <Heading page="home" as="h3" value="ZX7 SPEAKER" />
@@ -248,7 +257,7 @@ const Featured = styled(Container)`
   }
 `;
 
-const FeaturedProductOne = styled.div`
+const MotionFeaturedProductOne = motion(styled.div`
   position: relative;
   display: flex;
   align-items: center;
@@ -270,9 +279,9 @@ const FeaturedProductOne = styled.div`
     padding: 0 1.5rem;
     height: 37.5rem;
   }
-`;
+`);
 
-const FeaturedImageOne = styled.div`
+const MotionFeaturedImageOne = motion(styled.div`
   position: absolute;
   bottom: 0;
   left: 7.3125rem;
@@ -296,7 +305,7 @@ const FeaturedImageOne = styled.div`
     width: 10.75rem;
     height: 12.9375rem;
   }
-`;
+`);
 
 const Rings = styled.div`
   background-image: url("/assets/home/rings.svg");
