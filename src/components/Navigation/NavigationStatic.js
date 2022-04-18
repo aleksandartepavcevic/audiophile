@@ -1,13 +1,13 @@
 import Link from "next/link";
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { BsCart3 } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Container } from "../layouts/layouts";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { motion } from "framer-motion";
 
-const Navigation = () => {
+const NavigationStatic = () => {
   const size = useWindowSize();
 
   const navigation = {
@@ -163,7 +163,7 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default NavigationStatic;
 
 const StyledContainer = styled(Container)`
   position: absolute;
@@ -231,7 +231,7 @@ const MotionLinks = motion(styled.div`
     &::after {
       content: "";
       position: absolute;
-      top: calc(100% + 2.1rem);
+      top: calc(100% + 2.135rem);
       left: 0;
       z-index: 10;
       display: block;

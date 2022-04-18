@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-const Loader = ({ pre, page }) => {
+const Loader = ({ pre }) => {
   const container = {
     initial: {
       y: 0,

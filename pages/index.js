@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { motion, useTransform, useViewportScroll } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { Container } from "../src/components/layouts/layouts";
 import Button from "../src/components/Inputs/Button";
@@ -10,10 +10,7 @@ import Paragraph from "../src/components/Typography/Paragraph";
 import Pre from "../src/components/Typography/Pre";
 import Loader from "../src/components/Loader/Loader";
 
-export default function Home({ isInitial }) {
-  const { scrollYProgress } = useViewportScroll();
-  const y1 = useTransform(scrollYProgress, [0, 1], [-115, 200]);
-
+const Home = ({ isInitial, route }) => {
   const container = {
     animate: {
       transition: {
@@ -81,9 +78,8 @@ export default function Home({ isInitial }) {
   };
 
   return (
-    <div>
-      {isInitial && <Loader pre />}
-      {!isInitial && <Loader page />}
+    <>
+      <Loader pre={isInitial ? true : false} />
       <Head>
         <title>Audiophile - Home</title>
       </Head>
@@ -138,10 +134,7 @@ export default function Home({ isInitial }) {
       </MotionProducts>
       <Featured>
         <MotionFeaturedProductOne>
-          <MotionFeaturedImageOne
-            style={{ y: y1 }}
-            url="/assets/home/featured-zx9.svg"
-          />
+          <MotionFeaturedImageOne url="/assets/home/featured-zx9.svg" />
           <Rings />
           <ProductOneContent>
             <Heading page="home" as="h1" value="ZX9 SPEAKER" />
@@ -182,9 +175,11 @@ export default function Home({ isInitial }) {
         </AboutContent>
         <AboutImage />
       </About>
-    </div>
+    </>
   );
-}
+};
+
+export default Home;
 
 const MotionLandingSection = motion(styled(Container)`
   position: relative;
