@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
-import { ThemeProvider } from "styled-components";
+
+import { ThemeProvider } from "@emotion/react";
 import "./../styles/global.scss";
 import { theme } from "../src/theme/theme";
 import { AnimatePresence } from "framer-motion";

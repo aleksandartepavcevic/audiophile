@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "@emotion/styled";
 
 const Button = React.forwardRef((props, ref) => {
   const { value, ...rest } = props;
@@ -23,7 +23,7 @@ const StyledButton = styled.button`
 
   ${({ primary }) =>
     primary &&
-    css`
+    `
       background-color: ${(props) => props.theme.colors.primary};
       color: ${(props) => props.theme.colors.white};
 
@@ -36,7 +36,7 @@ const StyledButton = styled.button`
 
   ${({ secondary }) =>
     secondary &&
-    css`
+    `
       background-color: ${(props) => props.theme.colors.black};
       color: ${(props) => props.theme.colors.white};
 
@@ -49,7 +49,7 @@ const StyledButton = styled.button`
 
   ${({ outlined }) =>
     outlined &&
-    css`
+    `
       border: 0.0625rem solid ${(props) => props.theme.colors.black};
       background-color: transparent;
       color: ${(props) => props.theme.colors.black};

@@ -1,0 +1,136 @@
+@import "/styles/variables";
+
+.pre {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  font-size: 0.875rem;
+  font-family: inherit;
+  letter-spacing: 0.625rem;
+  color: $color-white;
+  text-transform: uppercase;
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.heading {
+  &.one {
+    max-width: 24.75rem;
+    margin: 0 0 1.5625rem 0;
+    font-size: 3.5rem;
+    line-height: 3.625rem;
+    color: $color-white;
+    text-transform: uppercase;
+    letter-spacing: 0.125rem;
+
+    @media (max-width: 576px) and (orientation: portrait) {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &.home {
+      @media (max-width: 1024px) and (orientation: portrait) {
+        max-width: 16.25rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media (max-width: 576px) and (orientation: portrait) {
+        max-width: 14.25rem;
+      }
+    }
+  }
+
+  &.two {
+    font-size: 2.5rem;
+    line-height: 2.75rem;
+    letter-spacing: 0.0875rem;
+    text-transform: uppercase;
+    color: $color-black;
+
+    @media (max-width: 576px) and (orientation: portrait) {
+      font-size: 1.75rem;
+      line-height: 2.1875rem;
+    }
+
+    &.home {
+      max-width: 27.8125rem;
+
+      span {
+        color: $color-primary;
+      }
+
+      @media (max-width: 1024px) and (orientation: portrait) {
+        max-width: 35.75rem;
+        margin: 3.875rem auto 2rem;
+      }
+
+      @media (max-width: 576px) and (orientation: portrait) {
+        margin-top: 2.5rem;
+      }
+    }
+  }
+
+  &.three {
+    font-size: 1.75rem;
+    letter-spacing: 0.125rem;
+    text-transform: uppercase;
+    color: $color-black;
+    margin-top: 0;
+
+    @media (max-width: 1024px) and (orientation: portrait) {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.paragraph {
+  margin-top: 0;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.5625rem;
+
+  @media (max-width: 1024px) and (orientation: portrait) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 576px) and (orientation: portrait) {
+    font-size: 0.9375rem;
+    margin-bottom: 1.75rem;
+  }
+
+  &.white {
+    color: $color-white;
+  }
+
+  &.gray {
+    color: $color-gray-one;
+  }
+
+  &.home {
+    max-width: 21.8125rem;
+    margin-bottom: 2.5rem;
+  }
+
+  &.about {
+    max-width: 27.8125rem;
+
+    @media (max-width: 1024px) and (orientation: portrait) {
+      max-width: 45.75rem;
+    }
+  }
+
+  &.footer {
+    max-width: 33.75rem;
+
+    @media (max-width: 1024px) and (orientation: portrait) {
+      max-width: unset;
+      margin: 0;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import Link from "next/link";
 import { BiChevronRight } from "react-icons/bi";
 import { motion } from "framer-motion";

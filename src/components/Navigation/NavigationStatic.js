@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import styled, { css } from "styled-components";
+import styled, { css } from "@emotion/styled";
 import { BsCart3 } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Container } from "../layouts/layouts";

@@ -1,5 +1,7 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { motion } from "framer-motion";
+import styles from "../styles/Home.module.scss";
+import layout from "../styles/Layout.module.scss";
 
 import { Container } from "../src/components/layouts/layouts";
 import Button from "../src/components/Inputs/Button";
@@ -83,28 +85,31 @@ const Home = ({ isInitial, route }) => {
       <Head>
         <title>Audiophile - Home</title>
       </Head>
-      <MotionLandingSection
+      <motion.div
+        className={`${styles.section} ${layout.container}`}
         variants={container}
         initial="initial"
         animate="animate"
         exit="exit"
       >
-        <LandingContent>
-          <MotionPre variants={item} value="New product" />
-          <MotionHeading
+        <div className={styles.content}>
+          <Pre isMotion={true} variants={item} value="New product" />
+          <Heading
+            isMotion={true}
             variants={item}
             as="h1"
             value="XX99 Mark II Headphones"
           />
-          <MotionParagraph
+          <Paragraph
+            isMotion={true}
             variants={item}
             page="home"
-            white
+            color="white"
             value="Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast."
           />
           <MotionButton variants={button} primary value="See Product" />
-        </LandingContent>
-      </MotionLandingSection>
+        </div>
+      </motion.div>
       <MotionProducts
         variants={products}
         initial="initial"
@@ -181,51 +186,7 @@ const Home = ({ isInitial, route }) => {
 
 export default Home;
 
-const MotionLandingSection = motion(styled(Container)`
-  position: relative;
-  height: clamp(45.5625rem, 100vh, 67.5rem);
-  background-color: #141414;
-  background-image: url("/assets/home/hero.svg");
-  background-position: 0 -3rem;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  @media (max-width: 1024px) and (orientation: portrait) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    // min-height: unset;
-    height: 100vh;
-    background-image: url("/assets/home/hero-tablet.svg");
-    background-position: center center;
-  }
-
-  @media (max-width: 576px) and (orientation: portrait) {
-    background-image: url("/assets/home/hero-mobile.svg");
-    background-size: cover;
-    min-height: 37.5rem;
-    max-height: 920px;
-    height: 100vh;
-  }
-`);
-
-const MotionHeading = motion(Heading);
-const MotionPre = motion(Pre);
-const MotionParagraph = motion(Paragraph);
 const MotionButton = motion(Button);
-
-const LandingContent = styled.div`
-  padding-top: clamp(14.0625rem, 30.8642vh, 22.0625rem);
-
-  @media (max-width: 1024px) and (orientation: portrait) {
-    padding-top: unset;
-    text-align: center;
-  }
-
-  @media (max-width: 576px) and (orientation: portrait) {
-    padding-top: 4rem;
-  }
-`;
 
 const MotionProducts = motion(styled(Container)`
   display: flex;
